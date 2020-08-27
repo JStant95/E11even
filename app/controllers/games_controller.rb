@@ -1,9 +1,10 @@
 class GamesController < ApplicationController
-  before_action :set_todo, only: [:show, :update, :destroy]
-
+  before_action :set_game, only: [:show, :update, :destroy]
+  include Response
     # GET /games
     def index
       @games = Game.all
+      # render json: @games
       json_response(@games)
     end
 
@@ -36,8 +37,7 @@ class GamesController < ApplicationController
       params.permit(:draft_type)
     end
 
-    def set_todo
+    def set_game
       @game = Game.find(params[:id])
     end
   end
-end
