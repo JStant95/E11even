@@ -1,5 +1,6 @@
 class GamersController < ApplicationController
-  before_action :set_gamer, only: [:show, :update, :destroy]
+  before_action :set_game
+  before_action :set_game_gamer, only: [:show, :update, :destroy]
   include Response
 
     # GET /games/:game_id/gamers
@@ -36,7 +37,11 @@ class GamersController < ApplicationController
       params.permit(:user_id, :game_id, :invite_status)
     end
 
-    def set_gamer
-      @gamer = Gamer.find(params[:id])
+    def set_game
+      @game = Game.find(params[:id])
+    end
+
+    def set_game_gamer
+      @gamer = @game.gamers.find_by!(id: params[:id]) if @game
     end
 end
