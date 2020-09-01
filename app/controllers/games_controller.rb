@@ -15,12 +15,12 @@ class GamesController < ApplicationController
 
     # GET /games/:id
     def show
-      json_response(@tgame)
+      json_response(@game)
     end
 
     # PUT /games/:id
     def update
-      @todo.update(game_params)
+      @game.update(game_params)
       head :no_content
     end
 
