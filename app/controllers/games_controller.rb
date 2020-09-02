@@ -33,7 +33,7 @@ class GamesController < ApplicationController
     private
 
     def game_params
-      params.permit(:draft_type)
+      params.permit(:draft_type, :id)
     end
 
     def set_game
