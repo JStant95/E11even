@@ -14,18 +14,18 @@ class GamersController < ApplicationController
       json_response(@gamer, :created)
     end
 
-    # GET /games/:game_id/gamers/:id
+    # GET gamers/:id
     def show
       json_response(@gamer)
     end
 
-    # PUT /games/:game_id/gamers/:id
+    # PUT gamers/:id
     def update
       @gamer.update(game_params)
       head :no_content
     end
 
-    # DELETE /games/:game_id/gamers/:id
+    # DELETE gamers/:id
     def destroy
       @gamer.destroy
       head :no_content

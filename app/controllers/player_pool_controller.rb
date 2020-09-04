@@ -1,0 +1,2 @@
+class PlayerPoolController < ApplicationController
+end
