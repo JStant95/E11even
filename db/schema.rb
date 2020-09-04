@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_25_160813) do
+ActiveRecord::Schema.define(version: 2020_09_03_160918) do
 
   create_table "gamers", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -28,6 +28,32 @@ ActiveRecord::Schema.define(version: 2020_08_25_160813) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "player_pools", force: :cascade do |t|
+    t.integer "pool_id", null: false
+    t.integer "player_id", null: false
+    t.boolean "picked"
+    t.integer "picked_by_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["picked_by_id"], name: "index_player_pools_on_picked_by_id"
+    t.index ["player_id"], name: "index_player_pools_on_player_id"
+    t.index ["pool_id"], name: "index_player_pools_on_pool_id"
+  end
+
+  create_table "players", force: :cascade do |t|
+    t.string "playername"
+    t.string "position"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "pools", force: :cascade do |t|
+    t.integer "game_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["game_id"], name: "index_pools_on_game_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "username"
@@ -39,4 +65,8 @@ ActiveRecord::Schema.define(version: 2020_08_25_160813) do
 
   add_foreign_key "gamers", "games"
   add_foreign_key "gamers", "users"
+  add_foreign_key "player_pools", "players"
+  add_foreign_key "player_pools", "pools"
+  add_foreign_key "player_pools", "users", column: "picked_by_id"
+  add_foreign_key "pools", "games"
 end
