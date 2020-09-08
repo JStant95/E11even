@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_03_160918) do
+ActiveRecord::Schema.define(version: 2020_09_08_155837) do
 
   create_table "gamers", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2020_09_03_160918) do
     t.integer "pool_id", null: false
     t.integer "player_id", null: false
     t.boolean "picked"
-    t.integer "picked_by_id", null: false
+    t.integer "picked_by_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["picked_by_id"], name: "index_player_pools_on_picked_by_id"
