@@ -1,5 +1,5 @@
 class PlayerPool < ApplicationRecord
   belongs_to :pool
   belongs_to :player
-  belongs_to :picked_by
+  belongs_to :picked_by, required: false 
 end
